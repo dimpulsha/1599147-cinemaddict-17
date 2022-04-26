@@ -1,7 +1,7 @@
 # Проект «Киноман»
 
 * Студент: [Dmitry Pulsha](https://up.htmlacademy.ru/ecmascript/17/user/1599147).
-* Наставник: `Неизвестно`.
+* Наставник: [Максим Волков](https://up.htmlacademy.ru/ecmascript/17/user/1508839).
 
 ---
 
