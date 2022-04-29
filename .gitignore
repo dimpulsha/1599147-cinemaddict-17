@@ -12,5 +12,6 @@ cinemaddict-17.code-workspace
 *.log*
 node_modules/
 build/
+_temp/
 
 # Собранные файлы (допишите самостоятельно)
