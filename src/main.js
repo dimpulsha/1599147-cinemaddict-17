@@ -40,6 +40,6 @@ commentedFilmList.init(contentSection.getElement());
 const statisticElement = document.querySelector('.footer__statistics');
 render(new StatisticView(), statisticElement);
 
-const filmDetailsPopup = new FilmDetailsPresenter();
-filmDetailsPopup.init(siteBodyElement);
+// const filmDetailsPopup = new FilmDetailsPresenter();
+// filmDetailsPopup.init(siteBodyElement);
 
