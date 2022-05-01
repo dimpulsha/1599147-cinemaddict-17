@@ -11,6 +11,12 @@ import TopFilmPresenter from './presenter/top-film-presenter';
 import CommentedFilmPresenter from './presenter/commented-film-presenter';
 import FilmDetailsPresenter from './presenter/film-details-presenter';
 
+import { FilmModel } from './model/film-model';
+// import './model/film-model';
+
+const films = new FilmModel();
+console.log(films.getShortFilmsInfo());
+
 const siteContainers = getContainerTemplates();
 
 const siteBodyElement = document.querySelector('body');
