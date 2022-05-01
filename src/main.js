@@ -4,6 +4,8 @@ import StatisticView from './view/statistic-view';
 
 import NavigationPresenter from './presenter/navigation-presenter';
 import SortPresenter from './presenter/sort-presenter';
+import FilmsPresenter from './presenter/films-pesenter';
+
 import FilmDetailsPresenter from './presenter/film-details-presenter';
 
 const siteBodyElement = document.querySelector('body');
