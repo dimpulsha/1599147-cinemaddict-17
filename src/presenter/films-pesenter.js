@@ -8,16 +8,16 @@ import CommentedFilmPresenter from './commented-film-presenter';
 
 
 export default class FilmsPresenter {
-// constructor ()
+
   siteContainers = getContainerTemplates();
   contentWrapper = new ContainerView(this.siteContainers.contentSection);
   filmList = new FilmListPresenter();
   topFilmList = new TopFilmPresenter();
   commentedFilmList = new CommentedFilmPresenter();
 
-  init = (contentSection, filmModel) => {
+  init = (contentSection, dataModel) => {
     this.contentSection = contentSection;
-    this.filmsData = filmModel.getFilmsInfo();
+    this.filmsData = dataModel.getFilmsInfo();
     render(this.contentWrapper, this.contentSection);
     this.filmList.init(this.contentWrapper.getElement(), this.filmsData);
     // console.log(this.filmsData);

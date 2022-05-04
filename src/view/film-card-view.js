@@ -1,8 +1,8 @@
 import { createElement } from '../render';
-import { getShortText } from '../utils/utils';
+import { getShortText, setActiveClass } from '../utils/utils';
 import { getDescriptionLimit, getReplacedText } from '../config';
 
-const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
+// const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
 
 const createFilmControlTemplate = (filmItem) => {
   const activeClass = 'film-card__controls-item--active';

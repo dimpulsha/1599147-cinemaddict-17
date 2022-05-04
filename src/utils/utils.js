@@ -16,7 +16,8 @@ const getShortText = (text, length, releasedText) => {
   return text;
 };
 
+const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
 
-export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText };
+export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText, setActiveClass };
 
 

@@ -12,9 +12,9 @@ export default class FilmListPresenter {
   mainFilmList = new FilmListView(this.filmSectionTemplates.mainList);
   mainFilmListContainer = new ContainerView(this.siteContainers.filmListContainer);
 
-  init = (contentSection, filmsData) => {
+  init = (contentSection, dataSet) => {
     this.contentSection = contentSection;
-    this.filmsData = filmsData;
+    this.dataSet = dataSet;
     render(this.mainFilmList, this.contentSection);
     render(this.mainFilmListContainer, this.mainFilmList.getElement());
 
@@ -22,7 +22,7 @@ export default class FilmListPresenter {
     //   render(new FilmCardView(), this.mainFilmListContainer.getElement());
     // }
 
-    this.filmsData.forEach((filmItem) => render(new FilmCardView(filmItem), this.mainFilmListContainer.getElement()));
+    this.dataSet.forEach((filmItem) => render(new FilmCardView(filmItem), this.mainFilmListContainer.getElement()));
 
     render(new ShowMoreView(), this.mainFilmList.getElement());
   };
