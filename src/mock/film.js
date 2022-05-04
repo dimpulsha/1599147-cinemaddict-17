@@ -3,18 +3,6 @@ import { getRandomInteger, getRandomItem } from '../utils/utils';
 const MIN_MOCK_FILMS = 5;
 const MAX_MOCK_FILMS = 15;
 
-// id
-// создание массива комментов
-// заполнение массива коментов
-// рейтинг
-// длительность (от 55 до 240)
-// название
-// постер
-// возраст
-// актеры
-// режиссер
-// сценарий
-
 const filmPosters = [
   'made-for-each-other.png',
   'popeye-meets-sinbad.png',
@@ -41,10 +29,10 @@ const getFilmMock = () => ({
     'age_rating': getRandomInteger(0, 18),
     'director': 'Tom Ford',
     'writers': [
-      'Takeshi Kitano'
+      'Takeshi Kitano', 'Anne Wigton', 'Heinz Herald', 'Richard Weil'
     ],
     'actors': [
-      'Morgan Freeman'
+      'Morgan Freeman', 'Erich von Stroheim', 'Mary Beth Hughes', 'Dan Duryea'
     ],
     'release': {
       //
@@ -55,10 +43,13 @@ const getFilmMock = () => ({
     'runtime': getRandomInteger(55, 240),
     // view
     'genre': [
-      'Comedy'
+      'Comedy',
+      'Music',
+      'Drama',
+      'Film-Noir'
     ],
     // 139...
-    'description': 'Oscar-winning film, a war drama about two young people, from the creators of timeless classic "Nu, Pogodi!" and "Alice in Wonderland", with the best fight scenes since Bruce Lee.'
+    'description': 'Oscar-winning film, a war drama about two young people, from the creators of timeless classic "Nu, Pogodi!" and "Alice in Wonderland", with the best fight scenes since Bruce Lee. The film opens following a murder at a cabaret in Mexico City in 1936, and then presents the events leading up to it in flashback. The Great Flamarion (Erich von Stroheim) is an arrogant, friendless, and misogynous marksman who displays his trick gunshot act in the vaudeville circuit. His show features a beautiful assistant, Connie (Mary Beth Hughes) and her drunken husband Al (Dan Duryea), Flamarion\'s other assistant. Flamarion falls in love with Connie, the movie\'s femme fatale, and is soon manipulated by her into killing her no good husband during one of their acts.'
   },
   'user_details': {
     'watchlist': Boolean(getRandomInteger(0, 1)),

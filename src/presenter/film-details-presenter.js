@@ -21,14 +21,20 @@ export default class FilmDetailsPresenter {
     '<button type="button" class="film-details__control-button film-details__control-button--active film-details__control-button--watched" id="watched" name="watched">Already watched</button>',
     '<button type="button" class="film-details__control-button film-details__control-button--favorite" id="favorite" name="favorite">Add to favorites</button>'];
 
-  init = (contentSection) => {
+  init = (contentSection, filmModel) => {
     render(this.popupFilmDetailsContainer, contentSection);
     render(this.filmDetailsForm, this.popupFilmDetailsContainer.getElement());
-    render(new FilmDetailsInfoView(), this.filmInfoContainerElement);
+    // передаем информацию о каком-то фильме
+    // todo - надо передавать инфу о конкретном фильме
+    render(new FilmDetailsInfoView(filmModel.getFilmItem()), this.filmInfoContainerElement);
+
+
     render(this.filmDetailsControl, this.filmInfoContainerElement);
     this.filmDetailsControlsList.forEach((value) => render(new FilmControlItemView(value), this.filmDetailsControl.getElement()));
     render(this.filmCommentsContainer, this.filmCommentsContainerElement);
     render(this.filmCommentsList, this.filmCommentsContainer.getElement());
+
+    // передаем список комментариев и проходимся по списку
     render(new FilmCommentsItemView(), this.filmCommentsList.getElement());
     render(new FilmNewCommentsView(), this.filmCommentsContainerElement);
   };

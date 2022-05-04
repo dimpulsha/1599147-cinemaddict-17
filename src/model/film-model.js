@@ -1,7 +1,7 @@
 import { getFilmListMock } from '../mock/film';
 import { getHours, getYear, humanizeDate } from '../utils/utils';
 
-const getShortItemInfo = (item) => ({
+const getFilmData = (item) => ({
   id: item.id,
   commentsNum: item.comments.length,
   commentsList: item.comments,
@@ -35,7 +35,10 @@ export default class FilmModel {
   films = getFilmListMock();
   // getFilmsInfo = () => this.films;
 
-  getFilmsInfo = () => this.films.map((value) => getShortItemInfo(value));
+  getFilmsInfo = () => this.films.map((value) => getFilmData(value));
+
+  // временная заглушка
+  getFilmItem = () => getFilmData(this.films[0]);
 
 }
 
