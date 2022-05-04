@@ -20,7 +20,9 @@ export default class FilmsPresenter {
     this.filmsData = filmModel.getFilmsInfo();
     render(this.contentWrapper, this.contentSection);
     this.filmList.init(this.contentWrapper.getElement(), this.filmsData);
-    // this.topFilmList.init(this.contentWrapper.getElement());
-    // this.commentedFilmList.init(this.contentWrapper.getElement());
+    // console.log(this.filmsData);
+    this.topFilmList.init(this.contentWrapper.getElement(), this.filmsData);
+    // console.log(this.filmsData);
+    this.commentedFilmList.init(this.contentWrapper.getElement(), this.filmsData);
   };
 }
