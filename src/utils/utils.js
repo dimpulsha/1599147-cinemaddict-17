@@ -11,7 +11,12 @@ const getRandomItem = (array) => array[getRandomInteger(0, array.length - 1)];
 const getHours = (minutes) => `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
 const getYear = (date) => dayjs(date).format('YYYY');
 const humanizeDate = (dueDate) => dayjs(dueDate).format('D MMMM YYYY');
+const getShortText = (text, length, releasedText) => {
+  if (text.length > length) { text = `${text.slice(0, length)}${releasedText}`; }
+  return text;
+};
 
-export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate };
+
+export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText };
 
 

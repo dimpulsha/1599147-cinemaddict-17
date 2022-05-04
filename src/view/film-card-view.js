@@ -1,4 +1,6 @@
 import { createElement } from '../render';
+import { getShortText } from '../utils/utils';
+import { getDescriptionLimit, getReplacedText } from '../config';
 
 const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
 
@@ -7,8 +9,8 @@ const createFilmControlTemplate = (filmItem) => {
 
   return (` <div class="film-card__controls">
       <button class="film-card__controls-item film-card__controls-item--add-to-watchlist ${setActiveClass(filmItem.userDetails.isWatchlist, activeClass)}" type="button">Add to watchlist</button>
-      <button class="film-card__controls-item film-card__controls-item--mark-as-watched ${setActiveClass(filmItem.userDetails.isWatched,  activeClass)}" type="button">Mark as watched</button>
-      <button class="film-card__controls-item film-card__controls-item--favorite ${setActiveClass(filmItem.userDetails.isFavorite,  activeClass)}}" type="button">Mark as favorite</button>
+      <button class="film-card__controls-item film-card__controls-item--mark-as-watched ${setActiveClass(filmItem.userDetails.isWatched, activeClass)}" type="button">Mark as watched</button>
+      <button class="film-card__controls-item film-card__controls-item--favorite ${setActiveClass(filmItem.userDetails.isFavorite, activeClass)}}" type="button">Mark as favorite</button>
     </div>`);
 };
 
@@ -23,8 +25,8 @@ const createFilmListTemplate = (filmItem) => (
           <span class="film-card__genre">${filmItem.filmInfo.genre.join(', ')}</span>
       </p>
       <img src="${filmItem.filmInfo.poster}" alt="" class="film-card__poster">
-      <p class="film-card__description">${filmItem.filmInfo.description}</p>
-      <span class="film-card__comments">${filmItem.filmInfo.commentsNum} comments</span>
+      <p class="film-card__description">${getShortText(filmItem.filmInfo.description, getDescriptionLimit(), getReplacedText())}</p>
+      <span class="film-card__comments">${filmItem.commentsNum} comments</span>
     </a>
     ${createFilmControlTemplate(filmItem)}
   </article>`
