@@ -5,7 +5,6 @@ const containerListTemplates = {
   filmListContainer: '<div class="films-list__container"></div>',
   popupFilmDetails: '<section class="film-details"> </section>',
   filmDetailsControls: '<section class="film-details__controls"></section>',
-  filmCommentsList: '<ul class="film-details__comments-list"></ul>',
 };
 
 const filmSectionTemplates = {

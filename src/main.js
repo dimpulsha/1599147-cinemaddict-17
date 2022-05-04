@@ -8,6 +8,7 @@ import FilmsPresenter from './presenter/films-pesenter';
 import FilmDetailsPresenter from './presenter/film-details-presenter';
 
 import FilmModel from './model/film-model';
+import CommentsModel from './model/comment-model';
 
 const siteBodyElement = document.querySelector('body');
 const siteHeaderElement = document.querySelector('.header');
@@ -28,5 +29,6 @@ siteFilms.init(siteMainElement, filmModel);
 const statisticElement = document.querySelector('.footer__statistics');
 render(new StatisticView(), statisticElement);
 
+const commentsModel = new CommentsModel();
 const filmDetailsPopup = new FilmDetailsPresenter();
-filmDetailsPopup.init(siteBodyElement, filmModel);
+filmDetailsPopup.init(siteBodyElement, filmModel, commentsModel);

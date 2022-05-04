@@ -15,12 +15,9 @@ const getGenreElement = (genreList, template) => {
 const getGenreInfo = (genreList) => (
   `<tr class="film-details__row">
         <td class="film-details__term">${getGenreText(genreList)}</td>
-          <td class="film-details__cell">
-          ${getGenreElement(genreList, genreTemplate)}
-           <!-- <span class="film-details__genre">Drama</span>
-            <span class="film-details__genre">Film-Noir</span>
-            <span class="film-details__genre">Mystery</span></td> -->
-          </tr>`);
+        <td class="film-details__cell">
+        ${getGenreElement(genreList, genreTemplate)}
+    </tr>`);
 
 const createFilmDetailsTemplate = (filmItem) => (`
     <table class="film-details__table">
@@ -48,15 +45,6 @@ const createFilmDetailsTemplate = (filmItem) => (`
               <td class="film-details__term">Country</td>
               <td class="film-details__cell">${filmItem.filmInfo.release.releaseCountry}</td>
             </tr>
-            <!--
-            <tr class="film-details__row">
-              <td class="film-details__term">${getGenreText(filmItem.filmInfo.genre)}</td>
-              <td class="film-details__cell">
-                <span class="film-details__genre">Drama</span>
-                <span class="film-details__genre">Film-Noir</span>
-                <span class="film-details__genre">Mystery</span></td>
-            </tr>
-            -->
             ${getGenreInfo(filmItem.filmInfo.genre)}
             </table>
 `);
@@ -101,7 +89,7 @@ export default class FilmDetailsInfoView {
 
   getElement() {
     if (!this.element) {
-      this.element = createElement(this.getTemplate(this.filmItem ));
+      this.element = createElement(this.getTemplate());
     }
     return this.element;
   }

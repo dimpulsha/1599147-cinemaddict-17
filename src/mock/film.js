@@ -17,7 +17,7 @@ const filmPosters = [
 const getFilmMock = () => ({
   'id': '0',
   //
-  'comments': [ 1, 23, 32, 42, 11, 67 ],
+  'comments': [ 1, 3, 5, 7, 9],
   'film_info': {
     //
     'title': 'A Little Pony Without The Carpet',

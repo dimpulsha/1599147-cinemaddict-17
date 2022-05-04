@@ -23,7 +23,7 @@ export default class FilmDetailsControlView {
 
   getElement() {
     if (!this.element) {
-      this.element = createElement(this.getTemplate(this.filmItem));
+      this.element = createElement(this.getTemplate());
     }
     return this.element;
   }
