@@ -31,12 +31,11 @@ const getShortItemInfo = (item) => ({
   }
 });
 
-class FilmModel {
+export default class FilmModel {
   films = getFilmListMock();
-  getFilmsInfo = () => this.films;
+  // getFilmsInfo = () => this.films;
 
-  getShortFilmsInfo = () => this.films.map((value) => getShortItemInfo(value));
+  getFilmsInfo = () => this.films.map((value) => getShortItemInfo(value));
 
 }
 
-export { FilmModel };
