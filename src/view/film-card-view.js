@@ -1,30 +1,44 @@
 import { createElement } from '../render';
+import { getShortText, setActiveClass } from '../utils/utils';
+import { getDescriptionLimit, getReplacedText } from '../config';
 
-const createFilmListTemplate = () => (
+// const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
+
+const createFilmControlTemplate = (filmItem) => {
+  const activeClass = 'film-card__controls-item--active';
+
+  return (` <div class="film-card__controls">
+      <button class="film-card__controls-item film-card__controls-item--add-to-watchlist ${setActiveClass(filmItem.userDetails.isWatchlist, activeClass)}" type="button">Add to watchlist</button>
+      <button class="film-card__controls-item film-card__controls-item--mark-as-watched ${setActiveClass(filmItem.userDetails.isWatched, activeClass)}" type="button">Mark as watched</button>
+      <button class="film-card__controls-item film-card__controls-item--favorite ${setActiveClass(filmItem.userDetails.isFavorite, activeClass)}}" type="button">Mark as favorite</button>
+    </div>`);
+};
+
+const createFilmListTemplate = (filmItem) => (
   `<article class="film-card">
     <a class="film-card__link">
-      <h3 class="film-card__title">The Dance of Life</h3>
-      <p class="film-card__rating">8.3</p>
+      <h3 class="film-card__title">${filmItem.filmInfo.title}</h3>
+      <p class="film-card__rating">${filmItem.filmInfo.totalRating}</p>
       <p class="film-card__info">
-          <span class="film-card__year">1929</span>
-          <span class="film-card__duration">1h 55m</span>
-          <span class="film-card__genre">Musical</span>
+          <span class="film-card__year">${filmItem.filmInfo.release.releaseYear}</span>
+          <span class="film-card__duration">${filmItem.filmInfo.runtime}</span>
+          <span class="film-card__genre">${filmItem.filmInfo.genre.join(', ')}</span>
       </p>
-      <img src="./images/posters/the-dance-of-life.jpg" alt="" class="film-card__poster">
-      <p class="film-card__description">Burlesque comic Ralph "Skid" Johnson (Skelly), and specialty dancer Bonny Lee King (Carroll), end up together on a cold, rainy night at a tr…</p>
-      <span class="film-card__comments">5 comments</span>
+      <img src="${filmItem.filmInfo.poster}" alt="" class="film-card__poster">
+      <p class="film-card__description">${getShortText(filmItem.filmInfo.description, getDescriptionLimit(), getReplacedText())}</p>
+      <span class="film-card__comments">${filmItem.commentsNum} comments</span>
     </a>
-    <div class="film-card__controls">
-      <button class="film-card__controls-item film-card__controls-item--add-to-watchlist" type="button">Add to watchlist</button>
-      <button class="film-card__controls-item film-card__controls-item--mark-as-watched" type="button">Mark as watched</button>
-      <button class="film-card__controls-item film-card__controls-item--favorite" type="button">Mark as favorite</button>
-    </div>
+    ${createFilmControlTemplate(filmItem)}
   </article>`
 );
 
 export default class FilmCardView {
+  constructor(filmItem) {
+    this.filmItem = filmItem;
+  }
+
   getTemplate() {
-    return createFilmListTemplate();
+    return createFilmListTemplate(this.filmItem);
   }
 
   getElement() {
