@@ -6,25 +6,20 @@ import FilmCardView from '../view/film-card-view';
 import ShowMoreView from '../view/show-more-view';
 
 export default class FilmListPresenter {
-  // cardLimit = 5;
-  siteContainers = getContainerTemplates();
-  filmSectionTemplates = getFilmSectionTemplates();
-  mainFilmList = new FilmListView(this.filmSectionTemplates.mainList);
-  mainFilmListContainer = new ContainerView(this.siteContainers.filmListContainer);
+  #siteContainers = getContainerTemplates();
+  #filmSectionTemplates = getFilmSectionTemplates();
+  // todo - перенести mainListSectionComponent и mainListContainerComponent в инит - если в dataset 0 записей - меняем заголовок (view) и контейнер mainListContainerComponent не формируем
+  #mainListSectionComponent = new FilmListView(this.#filmSectionTemplates.mainList);
+  #mainListContainerComponent = new ContainerView(this.#siteContainers.filmListContainer);
 
   init = (contentSection, dataSet) => {
     this.contentSection = contentSection;
     this.dataSet = dataSet;
-    render(this.mainFilmList, this.contentSection);
-    render(this.mainFilmListContainer, this.mainFilmList.getElement());
+    render(this.#mainListSectionComponent, this.contentSection);
+    render(this.#mainListContainerComponent, this.#mainListSectionComponent.element);
 
-    // for (let i = 0; i < this.cardLimit; i++) {
-    //   render(new FilmCardView(), this.mainFilmListContainer.getElement());
-    // }
+    this.dataSet.forEach((filmItem) => render(new FilmCardView(filmItem), this.#mainListContainerComponent.element));
 
-    this.dataSet.forEach((filmItem) => render(new FilmCardView(filmItem), this.mainFilmListContainer.getElement()));
-
-    render(new ShowMoreView(), this.mainFilmList.getElement());
+    render(new ShowMoreView(), this.#mainListSectionComponent.element);
   };
 }
-

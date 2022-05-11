@@ -77,21 +77,22 @@ const createFilmInfoTemplate = (filmItem) => (
       </div>`
 );
 
-export default class FilmDetailsInfoView {
+export default class FilmDetailsView {
+  #element = null;
 
   constructor(filmItem) {
     this.filmItem = filmItem;
   }
 
-  getTemplate() {
+  get template() {
     return createFilmInfoTemplate(this.filmItem);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {

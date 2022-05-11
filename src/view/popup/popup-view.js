@@ -1,8 +1,14 @@
-import { createElement } from '../render';
+import { createElement } from '../../render';
 
-const createFilmListTemplate = () => ' <p>130 291 movies inside</p>';
+const createFilmListTemplate = () => (
+  `<section class="film-details">
+  <form class="film-details__inner" action="" method="get">
 
-export default class StatisticView {
+  </form>
+  </section>`
+);
+
+export default class PopupView {
   #element = null;
 
   get template() {

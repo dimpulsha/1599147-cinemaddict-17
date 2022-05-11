@@ -1,8 +1,7 @@
 import { createElement } from '../../render';
 import { setActiveClass } from '../../utils/utils';
 
-const createDetailsControlTemplate = (filmItem) => {
-  // console.log(filmItem);
+const createPopupFilmControlTemplate = (filmItem) => {
   const activeClass = 'film-details__control-button--active';
   return (`<section class="film-details__controls">
         <button type="button" class="film-details__control-button film-details__control-button--watchlist ${setActiveClass(filmItem.userDetails.isWatchlist, activeClass)}" id="watchlist" name="watchlist">Add to watchlist</button>
@@ -13,22 +12,24 @@ const createDetailsControlTemplate = (filmItem) => {
 };
 
 export default class FilmDetailsControlView {
+  #element = null;
+
   constructor(filmItem) {
     this.filmItem = filmItem;
   }
 
-  getTemplate() {
-    return createDetailsControlTemplate(this.filmItem);
+  get template() {
+    return createPopupFilmControlTemplate(this.filmItem);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }

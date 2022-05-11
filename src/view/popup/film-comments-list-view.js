@@ -25,29 +25,36 @@ const getCommentsElementList = (itemsList) => {
   return elementList;
 };
 
-const createCommentsListTemplate = (itemsList) => (`
-  <ul class="film-details__comments-list">
- ${getCommentsElementList(itemsList)}
-  </ul>`
+const createFilmListTemplate = (itemsList) => (
+  ` <section class="film-details__comments-wrap">
+      <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">
+  ${itemsList.length}
+      </span></h3>
+       <ul class="film-details__comments-list">
+     ${getCommentsElementList(itemsList)}
+       </ul>
+    </section>`
 );
 
-export default class FilmCommentsView {
+export default class FilmCommentsListView {
+  #element = null;
+
   constructor(itemsList) {
     this.itemsList = itemsList;
   }
 
-  getTemplate() {
-    return createCommentsListTemplate(this.itemsList);
+  get template() {
+    return createFilmListTemplate(this.itemsList );
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }

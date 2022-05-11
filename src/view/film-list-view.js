@@ -1,22 +1,28 @@
 import { createElement } from '../render';
 
-export default class FilmListView {
-  // getTemplate() {
-  //   return getNavContainerTemplate();
-  // }
+// const createFilmListTemplate = () => '<section class="films-list"> <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2> </section>';
+// todo кандидат на объединение с ContainerView
 
-  constructor(template = '<li><a href="#"</a></li>') {
+export default class FilmListView {
+
+  #element = null;
+
+  constructor(template) {
     this.template = template;
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.template);
+  // get template() {
+  //   return createFilmListTemplate();
+  // }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
