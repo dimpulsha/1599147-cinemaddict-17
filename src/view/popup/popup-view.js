@@ -24,5 +24,6 @@ export default class PopupView {
 
   removeElement() {
     this.#element = null;
+    console.log(this.#element);
   }
 }

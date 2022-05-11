@@ -24,9 +24,11 @@ export default class FilmPopupPresenter {
   #filmComments = new PopupFilmCommentsPresenter();
   #filmNewComments = new PopupNewCommentsPresenter();
 
-  init = (contentSection, dataModel, referenceModel) => {
-    this.dataItem = dataModel.filmItem;
-    this.commentsList = referenceModel.getCommentsList();
+  // todo - не передавать всю модель - только нужную карточку
+
+  init = (contentSection, dataItem, commentsList) => {
+    this.dataItem = dataItem;
+    this.commentsList = commentsList;
 
     render(this.#popupComponent, contentSection);
     render(this.#popupInfoComponent, this.#popupComponent.element);
@@ -37,5 +39,11 @@ export default class FilmPopupPresenter {
     this.#filmComments.init(this.commentsList, this.#popupCommentsComponent.element);
     this.#filmNewComments.init(this.#popupCommentsComponent.element);
 
+  };
+
+  remove = () => {
+    console.log('remove');
+    this.#popupComponent.element.remove();
+    this.#popupComponent.removeElement();
   };
 }

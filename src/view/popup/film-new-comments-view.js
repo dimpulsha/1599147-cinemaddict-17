@@ -9,7 +9,7 @@ const createRadioButton = (item) => (`
       <img src="./images/emoji/${item}.png" width="30" height="30" alt="emoji">
   </label>`);
 
-const createRadioButtonList = (itemList) => itemList.map((item) => createRadioButton(item)).join();
+const createRadioButtonList = (itemList) => itemList.map((item) => createRadioButton(item)).join('');
 
 const createFilmNewCommentsTemplate = (itemList) => (
   ` <div class="film-details__new-comment">

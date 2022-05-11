@@ -24,13 +24,16 @@ const siteSort = new SortPresenter();
 siteSort.init(siteMainElement);
 
 const filmModel = new FilmModel;
+const commentsModel = new CommentsModel();
+
 const siteFilms = new FilmsPresenter();
-siteFilms.init(siteMainElement, filmModel);
+siteFilms.init(siteMainElement, filmModel, commentsModel);
 
 const statistic = new StatisticPresenter();
 statistic.init(statisticElement);
 
-const commentsModel = new CommentsModel();
 
-const filmDetailsPopup = new FilmPopupPresenter();
-filmDetailsPopup.init(siteBodyElement, filmModel, commentsModel);
+// console.log(commentsModel.getCommentsById([1,2,3,4,5,6,7,8]), commentsModel.getCommentsList());
+
+// const filmDetailsPopup = new FilmPopupPresenter();
+// filmDetailsPopup.init(siteBodyElement, filmModel, commentsModel);

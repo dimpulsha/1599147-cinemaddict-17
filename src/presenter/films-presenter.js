@@ -15,11 +15,11 @@ export default class FilmsPresenter {
   #topFilms = new TopFilmPresenter();
   #commentedFilms = new CommentedFilmPresenter();
 
-  init = (contentSection, dataModel) => {
+  init = (contentSection, dataModel, referenceDataModel) => {
     this.contentSection = contentSection;
     this.filmsData = dataModel.films;
     render(this.#filmsComponent, this.contentSection);
-    this.#filmList.init(this.#filmsComponent.element, this.filmsData);
+    this.#filmList.init(this.#filmsComponent.element, this.filmsData, referenceDataModel);
     this.#topFilms.init(this.#filmsComponent.element, this.filmsData);
     this.#commentedFilms.init(this.#filmsComponent.element, this.filmsData);
   };
