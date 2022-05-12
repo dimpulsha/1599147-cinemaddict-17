@@ -2,8 +2,8 @@ const containerListTemplates = {
   contentSection: '<section class="films"></section>',
   filmListContainer: '<div class="films-list__container"></div>',
   popupContainer: '<section class="film-details"> </section>',
-  popupInfoSection: '<div class="film-details__top-container"></div>',
-  popupCommentsSection: ' <div class="film-details__bottom-container"></div>',
+  // popupInfoSection: '<div class="film-details__top-container"></div>',
+  // popupCommentsSection: ' <div class="film-details__bottom-container"></div>',
   filmDetailsControls: '<section class="film-details__controls"></section>',
 };
 
