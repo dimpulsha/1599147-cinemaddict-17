@@ -11,4 +11,5 @@ const getCommentData = (item) => ({
 export default class CommentsModel {
   comments = getCommentsListMock();
   getCommentsList = () => this.comments.map((value) => getCommentData(value));
+  getCommentsById = (arrayOfId) => this.comments.filter((element) => arrayOfId.includes(element.id));
 }

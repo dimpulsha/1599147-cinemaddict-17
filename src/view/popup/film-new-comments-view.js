@@ -1,6 +1,17 @@
 import { createElement } from '../../render';
+import { getEmotionsList } from '../../config';
 
-const createFilmNewCommentsTemplate = () => (
+const emotionList = getEmotionsList();
+
+const createRadioButton = (item) => (`
+  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-${item} value="${item}">
+  <label class="film-details__emoji-label" for="emoji-${item}">
+      <img src="./images/emoji/${item}.png" width="30" height="30" alt="emoji">
+  </label>`);
+
+const createRadioButtonList = (itemList) => itemList.map((item) => createRadioButton(item)).join('');
+
+const createFilmNewCommentsTemplate = (itemList) => (
   ` <div class="film-details__new-comment">
           <div class="film-details__add-emoji-label"></div>
 
@@ -9,42 +20,26 @@ const createFilmNewCommentsTemplate = () => (
           </label>
 
           <div class="film-details__emoji-list">
-            <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="smile">
-            <label class="film-details__emoji-label" for="emoji-smile">
-              <img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">
-            </label>
-
-            <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="sleeping">
-            <label class="film-details__emoji-label" for="emoji-sleeping">
-              <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
-            </label>
-
-            <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-puke" value="puke">
-            <label class="film-details__emoji-label" for="emoji-puke">
-              <img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
-            </label>
-
-            <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="angry">
-            <label class="film-details__emoji-label" for="emoji-angry">
-              <img src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
-            </label>
+            ${createRadioButtonList(itemList)}
           </div>
         </div>`
 );
 
 export default class FilmNewCommentsView {
-  getTemplate() {
-    return createFilmNewCommentsTemplate();
+  #element = null;
+
+  get template() {
+    return createFilmNewCommentsTemplate(emotionList);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }

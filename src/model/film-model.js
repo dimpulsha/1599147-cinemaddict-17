@@ -32,13 +32,16 @@ const getFilmData = (item) => ({
 });
 
 export default class FilmModel {
-  films = getFilmListMock();
+  #films = getFilmListMock();
   // getFilmsInfo = () => this.films;
 
-  getFilmsInfo = () => this.films.map((value) => getFilmData(value));
+  get films() {
+    return this.#films.map((value) => getFilmData(value));
+  }
 
   // временная заглушка
-  getFilmItem = () => getFilmData(this.films[0]);
-
+  get filmItem() {
+    return this.films[0];
+  }
 }
 

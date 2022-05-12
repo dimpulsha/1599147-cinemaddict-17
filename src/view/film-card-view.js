@@ -2,11 +2,8 @@ import { createElement } from '../render';
 import { getShortText, setActiveClass } from '../utils/utils';
 import { getDescriptionLimit, getReplacedText } from '../config';
 
-// const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
-
 const createFilmControlTemplate = (filmItem) => {
   const activeClass = 'film-card__controls-item--active';
-
   return (` <div class="film-card__controls">
       <button class="film-card__controls-item film-card__controls-item--add-to-watchlist ${setActiveClass(filmItem.userDetails.isWatchlist, activeClass)}" type="button">Add to watchlist</button>
       <button class="film-card__controls-item film-card__controls-item--mark-as-watched ${setActiveClass(filmItem.userDetails.isWatched, activeClass)}" type="button">Mark as watched</button>
@@ -33,22 +30,24 @@ const createFilmListTemplate = (filmItem) => (
 );
 
 export default class FilmCardView {
+  #element = null;
+
   constructor(filmItem) {
     this.filmItem = filmItem;
   }
 
-  getTemplate() {
+  get template() {
     return createFilmListTemplate(this.filmItem);
   }
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
     }
-    return this.element;
+    return this.#element;
   }
 
   removeElement() {
-    this.element = null;
+    this.#element = null;
   }
 }
