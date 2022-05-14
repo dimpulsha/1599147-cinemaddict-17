@@ -1,6 +1,7 @@
 import UserProfilePresenter from './presenter/profile-presenter';
 
 import NavigationPresenter from './presenter/navigation-presenter';
+// todo -  создание page-presenter
 import SortPresenter from './presenter/sort-presenter';
 import FilmsPresenter from './presenter/films-presenter';
 import StatisticPresenter from './presenter/statistic-presenter';
