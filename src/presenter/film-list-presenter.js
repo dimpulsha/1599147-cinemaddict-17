@@ -1,4 +1,4 @@
-import { render } from '../render';
+import {render} from './framework/render.js';
 import { getFilmSlice } from '../config';
 import { getContainerTemplates, getFilmSectionTemplates, getFilmListHeaders } from './container-template';
 import ContainerView from '../view/container-view';

@@ -1,4 +1,4 @@
-import { render } from '../render';
+import {render} from './framework/render.js';
 import StatisticView from '../view/statistic-view';
 
 export default class StatisticPresenter {

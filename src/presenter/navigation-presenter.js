@@ -1,4 +1,4 @@
-import { render } from '../render';
+import {render} from './framework/render.js';
 import NavigationView from '../view/navigation-view';
 
 

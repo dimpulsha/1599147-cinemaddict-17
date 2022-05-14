@@ -1,4 +1,4 @@
-import { render } from '../render';
+import {render} from './framework/render.js';
 import FilmDetailsControlView from '../view/popup/film-details-control-view';
 
 export default class PopupFilmControlPresenter {

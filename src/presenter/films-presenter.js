@@ -1,4 +1,4 @@
-import { render } from '../render';
+import {render} from './framework/render.js';
 import { getContainerTemplates } from './container-template';
 
 import ContainerView from '../view/container-view';

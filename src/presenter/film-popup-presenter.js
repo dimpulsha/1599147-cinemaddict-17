@@ -1,5 +1,4 @@
-import { render } from '../render';
-
+import {render} from './framework/render.js';
 import PopupView from '../view/popup/popup-view';
 import PopupFilmDetailsPresenter from './popup-film-details-presenter';
 import PopupFilmControlPresenter from './film-details-control-presenter';

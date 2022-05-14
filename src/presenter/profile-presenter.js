@@ -1,4 +1,4 @@
-import { render } from '../render';
+import {render} from './framework/render.js';
 import UserProfileView from '../view/profile-view';
 
 export default class UserProfilePresenter {
