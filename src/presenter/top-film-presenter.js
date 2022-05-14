@@ -2,7 +2,7 @@ import { render } from '../render';
 import { getTopFilmSlice } from '../config';
 import { getContainerTemplates, getFilmSectionTemplates } from './container-template';
 import ContainerView from '../view/container-view';
-import FilmListView from '../view/film-list-view';
+import FilmListView from '../view/film-list-header-view';
 import FilmCardView from '../view/film-card-view';
 
 export default class TopFilmPresenter {

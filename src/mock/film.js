@@ -1,7 +1,7 @@
 import { getRandomInteger, getRandomItem } from '../utils/utils';
 
-const MIN_MOCK_FILMS = 5;
-const MAX_MOCK_FILMS = 15;
+const MIN_MOCK_FILMS = 1;
+const MAX_MOCK_FILMS = 23;
 
 const filmPosters = [
   'made-for-each-other.png',

@@ -20,7 +20,8 @@ export default class FilmsPresenter {
     this.filmsData = dataModel.films;
     render(this.#filmsComponent, this.contentSection);
     this.#filmList.init(this.#filmsComponent.element, this.filmsData, referenceDataModel);
-    this.#topFilms.init(this.#filmsComponent.element, this.filmsData);
-    this.#commentedFilms.init(this.#filmsComponent.element, this.filmsData);
+    // пока отключено
+    // this.#topFilms.init(this.#filmsComponent.element, this.filmsData);
+    // this.#commentedFilms.init(this.#filmsComponent.element, this.filmsData);
   };
 }
