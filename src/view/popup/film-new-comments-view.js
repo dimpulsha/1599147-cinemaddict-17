@@ -1,4 +1,4 @@
-import { createElement } from '../../render';
+import AbstractView from '../../framework/view/abstract-view.js';
 import { getEmotionsList } from '../../config';
 
 const emotionList = getEmotionsList();
@@ -25,21 +25,9 @@ const createFilmNewCommentsTemplate = (itemList) => (
         </div>`
 );
 
-export default class FilmNewCommentsView {
-  #element = null;
+export default class FilmNewCommentsView extends AbstractView{
 
   get template() {
     return createFilmNewCommentsTemplate(emotionList);
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }

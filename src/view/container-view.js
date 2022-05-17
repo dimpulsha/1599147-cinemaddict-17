@@ -1,22 +1,23 @@
-import { createElement } from '../render';
+import AbstractView from '../framework/view/abstract-view.js';
 
-export default class ContainerView {
+export default class ContainerView extends AbstractView {
 
-  #element = null;
+  #templatesList = {
+    filmsSection: '<section class="films"></section>',
+    filmListSection: '<section class="films-list"> </section>',
+    filmListSectionExtra:' <section class="films-list films-list--extra"></section>',
+    filmListContainer: '<div class="films-list__container"></div>',
+    popupContainer: '<section class="film-details"> </section>',
+    filmDetailsControls: '<section class="film-details__controls"></section>',
+  };
 
-  constructor(template) {
-    this.template = template;
+  constructor(templateName) {
+    super();
+    this.templateName = templateName;
   }
 
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
+  get template() {
+    return this.#templatesList[this.templateName];
   }
 }
 

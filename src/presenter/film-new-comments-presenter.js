@@ -1,6 +1,6 @@
-import { render } from '../render';
+import {render} from '../framework/render.js';
 import FilmNewCommentsView from '../view/popup/film-new-comments-view';
-
+// нужен ли этот презентер?
 export default class PopupNewCommentsPresenter {
 
   init = (contentSection) => {

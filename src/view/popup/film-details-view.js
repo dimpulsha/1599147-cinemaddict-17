@@ -1,4 +1,4 @@
-import { createElement } from '../../render';
+import AbstractView from '../../framework/view/abstract-view.js';
 
 const getGenreText = (genreList) => genreList.length > 1 ? 'Genres' : 'Genre';
 
@@ -77,10 +77,10 @@ const createFilmInfoTemplate = (filmItem) => (
       </div>`
 );
 
-export default class FilmDetailsView {
-  #element = null;
+export default class FilmDetailsView extends AbstractView{
 
   constructor(filmItem) {
+    super();
     this.filmItem = filmItem;
   }
 
@@ -88,14 +88,4 @@ export default class FilmDetailsView {
     return createFilmInfoTemplate(this.filmItem);
   }
 
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
-
-  removeElement() {
-    this.element = null;
-  }
 }

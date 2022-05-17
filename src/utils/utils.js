@@ -12,13 +12,18 @@ const getHours = (minutes) => `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
 const getYear = (date) => dayjs(date).format('YYYY');
 const humanizeDate = (dueDate) => dayjs(dueDate).format('D MMMM YYYY');
 const humanizeDateTime = (dueDate) => dayjs(dueDate).format('YYYY/MM/DD HH:mm');
+
 const getShortText = (text, length, releasedText) => {
   if (text.length > length) { text = `${text.slice(0, length)}${releasedText}`; }
   return text;
 };
 
+const isEscKey = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
+const deepArrayCopy = (array) => array.map((item) => ({ ...item }));
+
 const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
 
-export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText, setActiveClass, humanizeDateTime };
+export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText, setActiveClass, humanizeDateTime, deepArrayCopy, isEscKey };
 
 

@@ -1,5 +1,5 @@
 import { getFilmListMock } from '../mock/film';
-import { getHours, getYear, humanizeDate } from '../utils/utils';
+import { getHours, getYear, humanizeDate, deepArrayCopy } from '../utils/utils';
 
 const getFilmData = (item) => ({
   id: item.id,
@@ -32,16 +32,14 @@ const getFilmData = (item) => ({
 });
 
 export default class FilmModel {
-  #films = getFilmListMock();
-  // getFilmsInfo = () => this.films;
+  #preparedDataset = getFilmListMock().map((value) => getFilmData(value));
 
   get films() {
-    return this.#films.map((value) => getFilmData(value));
+    return deepArrayCopy(this.#preparedDataset);
   }
 
-  // временная заглушка
-  get filmItem() {
-    return this.films[0];
+  get watchedFilms() {
+    return this.#preparedDataset.filter((item) => item.userDetails.isWatched).length;
   }
 }
 
