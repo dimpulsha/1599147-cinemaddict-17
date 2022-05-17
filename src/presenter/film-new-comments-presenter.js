@@ -1,4 +1,4 @@
-import {render} from './framework/render.js';
+import {render} from '../framework/render.js';
 import FilmNewCommentsView from '../view/popup/film-new-comments-view';
 // нужен ли этот презентер?
 export default class PopupNewCommentsPresenter {

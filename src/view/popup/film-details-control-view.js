@@ -1,4 +1,4 @@
-import { createElement } from '../../render';
+import AbstractView from '../../framework/view/abstract-view.js';
 import { setActiveClass } from '../../utils/utils';
 
 const createPopupFilmControlTemplate = (filmItem) => {
@@ -11,25 +11,14 @@ const createPopupFilmControlTemplate = (filmItem) => {
   );
 };
 
-export default class FilmDetailsControlView {
-  #element = null;
+export default class FilmDetailsControlView extends AbstractView{
 
   constructor(filmItem) {
+    super();
     this.filmItem = filmItem;
   }
 
   get template() {
     return createPopupFilmControlTemplate(this.filmItem);
-  }
-
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
-
-  removeElement() {
-    this.#element = null;
   }
 }

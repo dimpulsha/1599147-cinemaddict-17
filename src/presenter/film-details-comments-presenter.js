@@ -1,4 +1,4 @@
-import {render} from './framework/render.js';
+import {render} from '../framework/render.js';
 import FilmCommentsListView from '../view/popup/film-comments-list-view';
 
 export default class PopupFilmCommentsPresenter {

@@ -1,4 +1,4 @@
-import { createElement } from '../../render';
+import AbstractView from '../../framework/view/abstract-view.js';
 
 const createFilmListTemplate = () => (
   `<section class="film-details">
@@ -14,29 +14,29 @@ const createFilmListTemplate = () => (
   </section>`
 );
 
-export default class PopupView {
-  #element = null;
+export default class PopupView extends AbstractView{
+  // #element = null;
 
   get template() {
     return createFilmListTemplate();
   }
 
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
+  // get element() {
+  //   if (!this.#element) {
+  //     this.#element = createElement(this.template);
+  //   }
+  //   return this.#element;
+  // }
 
   get filmInfoElement() {
-    return this.#element.querySelector('.film-details__top-container');
+    return this.element.querySelector('.film-details__top-container');
   }
 
   get commentsElement() {
-    return this.#element.querySelector('.film-details__bottom-container');
+    return this.element.querySelector('.film-details__bottom-container');
   }
 
-  removeElement() {
-    this.#element = null;
-  }
+  // removeElement() {
+  //   this.#element = null;
+  // }
 }

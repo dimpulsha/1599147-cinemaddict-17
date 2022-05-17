@@ -1,4 +1,6 @@
-import { createElement } from '../render';
+// import { createElement } from '../render';
+import AbstractView from '../framework/view/abstract-view.js';
+
 import { getShortText, setActiveClass } from '../utils/utils';
 import { getDescriptionLimit, getReplacedText } from '../config';
 
@@ -29,10 +31,11 @@ const createFilmListTemplate = (filmItem) => (
   </article>`
 );
 
-export default class FilmCardView {
-  #element = null;
+export default class FilmCardView extends AbstractView{
+  // #element = null;
 
   constructor(filmItem) {
+    super();
     this.filmItem = filmItem;
   }
 
@@ -40,14 +43,14 @@ export default class FilmCardView {
     return createFilmListTemplate(this.filmItem);
   }
 
-  get element() {
-    if (!this.#element) {
-      this.#element = createElement(this.template);
-    }
-    return this.#element;
-  }
+  // get element() {
+  //   if (!this.#element) {
+  //     this.#element = createElement(this.template);
+  //   }
+  //   return this.#element;
+  // }
 
-  removeElement() {
-    this.#element = null;
-  }
+  // removeElement() {
+  //   this.#element = null;
+  // }
 }
