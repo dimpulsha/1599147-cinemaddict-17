@@ -30,7 +30,7 @@ export default class FilmPopupPresenter {
     this.#popupComponent.removeElement();
   };
 
-  get popupCloseElement() {
-    return this.#popupComponent.element.querySelector('.film-details__close-btn');
+  get popupComponent() {
+    return this.#popupComponent;
   }
 }

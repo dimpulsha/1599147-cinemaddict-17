@@ -18,10 +18,12 @@ const getShortText = (text, length, releasedText) => {
   return text;
 };
 
+const isEscKey = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
 const deepArrayCopy = (array) => array.map((item) => ({ ...item }));
 
 const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
 
-export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText, setActiveClass, humanizeDateTime, deepArrayCopy };
+export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText, setActiveClass, humanizeDateTime, deepArrayCopy, isEscKey };
 
 

@@ -1,27 +1,26 @@
 // import { render } from '../framework/render.js';
-import { getPageEntryPoints } from '../config';
+// import { getPageEntryPoints } from '../config';
+import ApplicationBodyView from '../view/application-body-view';
 import UserProfilePresenter from './profile-presenter';
 import MainSectionPresenter from './main-section-presenter';
 import StatisticPresenter from './statistic-presenter';
 
 export default class PagePresenter {
-  #pageEntryPoints = getPageEntryPoints();
+  applicationBody = new ApplicationBodyView();
 
   constructor(dataModel, referenceModel) {
     this.dataModel = dataModel;
     this.referenceModel = referenceModel;
   }
 
-  // filmsCount = this.dataModel.films.length;
   #userProfile = new UserProfilePresenter();
   // заменить на statisticView
   #statisticFilms = new StatisticPresenter(this.dataModel);
   #mainContentSection = new MainSectionPresenter();
 
   init = () => {
-    this.#userProfile.init(this.#pageEntryPoints.siteHeaderElement, this.dataModel);
-    this.#statisticFilms.init(this.#pageEntryPoints.statisticElement, this.dataModel);
-    this.#mainContentSection.init(this.#pageEntryPoints.siteMainElement, this.dataModel, this.referenceModel);
-    // render(this.#statisticComponent, this.#pageEntryPoints.statisticElement);
+    this.#userProfile.init(this.applicationBody.headerElement, this.dataModel);
+    this.#statisticFilms.init(this.applicationBody.statisticElement, this.dataModel);
+    this.#mainContentSection.init(this.applicationBody.mainElement, this.dataModel, this.referenceModel, this.applicationBody);
   };
 }

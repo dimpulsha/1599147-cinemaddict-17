@@ -1,5 +1,7 @@
 import { render } from '../framework/render.js';
-import { getFilmSectionConfig, getPageEntryPoints } from '../config';
+import { getFilmSectionConfig } from '../config';
+// import { isEscKey } from '../utils/utils';
+// import { getRootElement, getOpenPopup, removeNoScroll, setNoScroll } from '../view/application-body';
 import ContainerView from '../view/container-view';
 import FilmListTitleView from '../view/film-list-title-view';
 import FilmCardView from '../view/film-card-view';
@@ -11,63 +13,70 @@ export default class FilmsList {
     this.listName = listName;
   }
 
-  _renderFilm = (contentSection, filmItem, referenceModel) => {
+  _renderFilm = (contentSection, filmItem, referenceModel, rootComponent) => {
     const filmCardComponent = new FilmCardView(filmItem);
-    // console.log(filmCardComponent);
-    const filmCardElement = filmCardComponent.element.querySelector('.film-card__link');
+    // const filmCardElement = filmCardComponent.filmCard;
     const filmDetailsPopup = new FilmPopupPresenter();
-    const popupRootElement = getPageEntryPoints().bodyElement;
+    const popupRootElement = rootComponent.element;
 
     const popupRemove = () => {
       filmDetailsPopup.remove();
-      popupRootElement.classList.remove('.hide-overflow');
-      document.removeEventListener('keydown', onEscKeyDown);
+      rootComponent.removeNoScroll();
+      // document.removeEventListener('keydown', onEscKeyDown);
+      rootComponent.removeEscKeyDownHandler();
     };
 
-    function onEscKeyDown  (evt) {
-      if (evt.key === 'Escape' || evt.key === 'Esc') {
-        evt.preventDefault();
-        popupRemove();
-      }
-    }
+    // function onEscKeyDown (evt) {
+    //   if (isEscKey(evt)) {
+    //     evt.preventDefault();
+    //     popupRemove();
+    //   }
+    // }
 
-    const onCloseButtonPopup = (evt) => {
-      evt.preventDefault();
+    const onCloseButtonPopup = () => {
       popupRemove();
     };
 
     const showPopup = () => {
-      const openedPopupElement = getPageEntryPoints().openPopupElement;
+      const openedPopupElement = rootComponent.openPopup;
       if (openedPopupElement) {
-        document.removeEventListener('keydown', onEscKeyDown);
+        // document.removeEventListener('keydown', onEscKeyDown);
+        rootComponent.removeEscKeyDownHandler();
         openedPopupElement.remove();
-        popupRootElement.classList.add('.hide-overflow');
+        rootComponent.removeNoScroll();
       }
-      popupRootElement.classList.add('.hide-overflow');
+      rootComponent.setNoScroll();
       // console.log(popupRootElement);
       filmDetailsPopup.init(popupRootElement, filmItem, referenceModel.getCommentsById(filmItem.commentsList));
-      filmDetailsPopup.popupCloseElement.addEventListener('click', onCloseButtonPopup);
+      filmDetailsPopup.popupComponent.setCloseClickHandler(onCloseButtonPopup);
     };
 
-    filmCardElement.addEventListener('click', () => {
+    const handleEscKeyDown = () => {
+      popupRemove();
+    };
+
+    const onFilmCardClick = () => {
       showPopup();
-      document.addEventListener('keydown', onEscKeyDown);
-    });
+      // document.addEventListener('keydown', onEscKeyDown);
+      rootComponent.setEscKeyDownHandler(handleEscKeyDown);
+    };
+
+    filmCardComponent.setClickCardHandler(onFilmCardClick);
 
     render(filmCardComponent, contentSection.element);
   };
 
-  _renderFilmsSlice = (contentSection, films, referenceDataModel, startIndex, stopIndex) => {
-    films.slice(startIndex, stopIndex).forEach((filmItem) => this._renderFilm(contentSection, filmItem, referenceDataModel));
+  _renderFilmsSlice = (contentSection, films, referenceDataModel, startIndex, stopIndex, rootComponent) => {
+    films.slice(startIndex, stopIndex).forEach((filmItem) => this._renderFilm(contentSection, filmItem, referenceDataModel, rootComponent));
   };
 
-  _renderFilmList = (contentSection, dataset, referenceDataModel, startIndex, stopIndex) => {
+  _renderFilmList = (contentSection, dataset, referenceDataModel, startIndex, stopIndex, rootComponent) => {
     const filmListContainer = new ContainerView('filmListContainer');
     render(filmListContainer, contentSection);
-    this._renderFilmsSlice(filmListContainer, dataset, referenceDataModel, startIndex, stopIndex);
+    this._renderFilmsSlice(filmListContainer, dataset, referenceDataModel, startIndex, stopIndex, rootComponent);
   };
 
-  init = (contentSection, dataset, referenceModel) => {
+  init = (contentSection, dataset, referenceModel, rootComponent) => {
     const renderStartIndex = 0;
     const sectionConfig = getFilmSectionConfig()[this.listName];
     const filmListSectionComponent = new ContainerView(sectionConfig.sectionName);
@@ -75,7 +84,7 @@ export default class FilmsList {
     render(filmListSectionComponent, contentSection);
     render(filmListSectionTitleComponent, filmListSectionComponent.element);
     if (dataset.length > 0) {
-      this._renderFilmList(filmListSectionComponent.element, dataset, referenceModel, renderStartIndex, sectionConfig.LIST_SLICE);
+      this._renderFilmList(filmListSectionComponent.element, dataset, referenceModel, renderStartIndex, sectionConfig.LIST_SLICE, rootComponent);
     }
   };
 }

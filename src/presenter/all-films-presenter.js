@@ -13,24 +13,22 @@ export default class AllFilmsList extends FilmsList{
   #renderStartIndex = 0;
   #filmListContainer = new ContainerView('filmListContainer');
 
-  _renderFilmList = (contentSection, dataset, referenceDataModel, startIndex, stopIndex) => {
-    // const filmListContainer = new ContainerView('filmListContainer');
+  _renderFilmList = (contentSection, dataset, referenceDataModel, startIndex, stopIndex, rootComponent) => {
     render(this.#filmListContainer, contentSection);
-    this._renderFilmsSlice(this.#filmListContainer, dataset, referenceDataModel, startIndex, stopIndex);
+    this._renderFilmsSlice(this.#filmListContainer, dataset, referenceDataModel, startIndex, stopIndex, rootComponent);
 
     if (dataset.length > this.#filmSliceCount) {
       render(this.#showMoreComponent, contentSection);
-      this.#showMoreComponent.element.addEventListener('click', this.#handleShowMoreClick(dataset) );
+      this.#showMoreComponent.setClickHandler(this.#handleShowMoreClick(dataset));
     }
   };
 
-  #handleShowMoreClick = (dataset) => (evt) => {
-    evt.preventDefault();
+  #handleShowMoreClick = (dataset) => () => {
     this.#renderStartIndex =+ this.#renderFilmCount;
     this.#renderFilmCount = this.#renderFilmCount + this.#filmSliceCount;
     this._renderFilmsSlice(this.#filmListContainer, dataset, this.referenceDataModel, this.#renderStartIndex,  this.#renderFilmCount);
 
-    if (dataset.length < this.#renderFilmCount) {
+    if (dataset.length <= this.#renderFilmCount) {
       this.#showMoreComponent.element.remove();
       this.#showMoreComponent.removeElement();
     }
@@ -44,7 +42,7 @@ export default class AllFilmsList extends FilmsList{
     render(filmListSectionTitleComponent, contentSection);
   };
 
-  #renderFilmContainerContent = (contentSection, dataset, referenceModel) => {
+  #renderFilmContainerContent = (contentSection, dataset, referenceModel, rootComponent) => {
     //  пока заглушка
     const filterKind = null;
     if (dataset.length === 0) {
@@ -52,13 +50,13 @@ export default class AllFilmsList extends FilmsList{
       return;
     }
     this.#renderFilmListTitle(contentSection.element, filterKind);
-    this._renderFilmList(contentSection.element, dataset, referenceModel, this.#renderStartIndex, this.#filmSliceCount);
+    this._renderFilmList(contentSection.element, dataset, referenceModel, this.#renderStartIndex, this.#filmSliceCount, rootComponent);
   };
 
 
-  init = (contentSection, dataset, referenceModel) => {
+  init = (contentSection, dataset, referenceModel, rootComponent) => {
     const filmListSectionComponent = new ContainerView(this.#sectionConfig.sectionName);
     render(filmListSectionComponent, contentSection);
-    this.#renderFilmContainerContent(filmListSectionComponent, dataset, referenceModel);
+    this.#renderFilmContainerContent(filmListSectionComponent, dataset, referenceModel, rootComponent);
   };
 }
