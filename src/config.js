@@ -43,10 +43,18 @@ const filmSectionConfig = {
   }
 };
 
+const filterType = {
+  ALL: 'all',
+  WATCHLIST: 'watchlist',
+  HISTORY: 'history',
+  FAVORITES: 'favorites'
+};
+
 const getDescriptionLimit = () => MAX_TEXT_LENGTH;
 const getReplacedText = () => TOO_MACH_TEXT;
 const getEmotionsList = () => emotions;
 const getRatingNames = () => ratingNames;
 const getFilmSectionConfig = () => filmSectionConfig;
+const getFilterType = () => filterType;
 
-export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig };
+export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig, getFilterType };
