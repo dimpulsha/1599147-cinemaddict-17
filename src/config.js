@@ -1,17 +1,6 @@
 const MAX_TEXT_LENGTH = 139;
 const TOO_MACH_TEXT = '...';
-// todo SLICE - удалить
-// const FILM_LIST_SLICE = 5;
-// const TOP_FILM_SLICE = 2;
-// const COMMENTED_FILM_SLICE = 2;
 const emotions = ['smile', 'sleeping', 'puke', 'angry'];
-// const pageEntryPoints = {
-//   bodyElement: document.querySelector('body'),
-//   siteHeaderElement: document.querySelector('.header'),
-//   siteMainElement: document.querySelector('.main'),
-//   statisticElement: document.querySelector('.footer__statistics'),
-//   openPopupElement: document.querySelector('.film-details')
-// };
 const ratingNames = new Map(Object.entries({
   0: '',
   1: 'Novice',
@@ -56,13 +45,8 @@ const filmSectionConfig = {
 
 const getDescriptionLimit = () => MAX_TEXT_LENGTH;
 const getReplacedText = () => TOO_MACH_TEXT;
-// const getFilmSlice = () => FILM_LIST_SLICE;
-// const getTopFilmSlice = () => TOP_FILM_SLICE;
-// const getCommentedFilmSlice = () => COMMENTED_FILM_SLICE;
 const getEmotionsList = () => emotions;
-// const getPageEntryPoints = () => pageEntryPoints;
 const getRatingNames = () => ratingNames;
 const getFilmSectionConfig = () => filmSectionConfig;
 
-// getFilmSlice, getTopFilmSlice, getCommentedFilmSlice, getPageEntryPoints,
 export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig };

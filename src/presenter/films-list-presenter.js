@@ -1,7 +1,5 @@
 import { render } from '../framework/render.js';
 import { getFilmSectionConfig } from '../config';
-// import { isEscKey } from '../utils/utils';
-// import { getRootElement, getOpenPopup, removeNoScroll, setNoScroll } from '../view/application-body';
 import ContainerView from '../view/container-view';
 import FilmListTitleView from '../view/film-list-title-view';
 import FilmCardView from '../view/film-card-view';
@@ -15,23 +13,14 @@ export default class FilmsList {
 
   _renderFilm = (contentSection, filmItem, referenceModel, rootComponent) => {
     const filmCardComponent = new FilmCardView(filmItem);
-    // const filmCardElement = filmCardComponent.filmCard;
     const filmDetailsPopup = new FilmPopupPresenter();
     const popupRootElement = rootComponent.element;
 
     const popupRemove = () => {
       filmDetailsPopup.remove();
       rootComponent.removeNoScroll();
-      // document.removeEventListener('keydown', onEscKeyDown);
       rootComponent.removeEscKeyDownHandler();
     };
-
-    // function onEscKeyDown (evt) {
-    //   if (isEscKey(evt)) {
-    //     evt.preventDefault();
-    //     popupRemove();
-    //   }
-    // }
 
     const onCloseButtonPopup = () => {
       popupRemove();
@@ -40,13 +29,11 @@ export default class FilmsList {
     const showPopup = () => {
       const openedPopupElement = rootComponent.openPopup;
       if (openedPopupElement) {
-        // document.removeEventListener('keydown', onEscKeyDown);
         rootComponent.removeEscKeyDownHandler();
         openedPopupElement.remove();
         rootComponent.removeNoScroll();
       }
       rootComponent.setNoScroll();
-      // console.log(popupRootElement);
       filmDetailsPopup.init(popupRootElement, filmItem, referenceModel.getCommentsById(filmItem.commentsList));
       filmDetailsPopup.popupComponent.setCloseClickHandler(onCloseButtonPopup);
     };
@@ -57,7 +44,6 @@ export default class FilmsList {
 
     const onFilmCardClick = () => {
       showPopup();
-      // document.addEventListener('keydown', onEscKeyDown);
       rootComponent.setEscKeyDownHandler(handleEscKeyDown);
     };
 
