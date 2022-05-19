@@ -1,5 +1,6 @@
 import { getFilmListMock } from '../mock/film';
 import { getHours, getYear, humanizeDate, deepArrayCopy } from '../utils/utils';
+import { getFilterFunc } from '../utils/appService';
 
 const getFilmData = (item) => ({
   id: item.id,
@@ -31,6 +32,15 @@ const getFilmData = (item) => ({
   }
 });
 
+const filter = getFilterFunc();
+
+// const generateFilter = (tasks) => Object.entries(filter).map(
+//   ([filterName, filterTasks]) => ({
+//     name: filterName,
+//     count: filterTasks(tasks).length,
+//   }),
+// );
+
 export default class FilmModel {
   #preparedDataset = getFilmListMock().map((value) => getFilmData(value));
 
@@ -41,5 +51,12 @@ export default class FilmModel {
   get watchedFilms() {
     return this.#preparedDataset.filter((item) => item.userDetails.isWatched).length;
   }
+
+  generateFilter = () => Object.entries(filter).map(
+    ([filterName, filterTasks]) => ({
+      name: filterName,
+      count: filterTasks(this.#preparedDataset).length,
+    }),
+  );
 }
 
