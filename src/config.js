@@ -44,7 +44,7 @@ const filmSectionConfig = {
 };
 
 const filterType = {
-  ALL: 'all',
+  // ALL: 'all',
   WATCHLIST: 'watchlist',
   HISTORY: 'history',
   FAVORITES: 'favorites'

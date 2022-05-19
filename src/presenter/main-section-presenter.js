@@ -7,7 +7,7 @@ import AllFilmsList from './all-films-presenter.js';
 
 export default class MainSectionPresenter {
   #sortComponent = new SortView();
-  #filterComponent = new FilterView();
+
   #filmsSectionComponent = new ContainerView('filmsSection');
   #filmsListAllSection = new AllFilmsList('ALL');
   #filmsListTopSection = new FilmsList('TOP');
@@ -19,8 +19,10 @@ export default class MainSectionPresenter {
     this.dataModel = dataModel;
     this.referenceDataModel = referenceDataModel;
     this.filmsList = this.dataModel.films;
+    const filters = this.dataModel.generateFilter();
+    const filterComponent = new FilterView(filters);
 
-    render(this.#filterComponent, this.contentSection);
+    render(filterComponent, this.contentSection);
     render(this.#sortComponent, this.contentSection);
     render(this.#filmsSectionComponent, this.contentSection);
     this.#filmsListAllSection.init(this.#filmsSectionComponent.element, this.filmsList, referenceDataModel, rootComponent);

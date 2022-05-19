@@ -19,14 +19,14 @@ export default class AllFilmsList extends FilmsList{
 
     if (dataset.length > this.#filmSliceCount) {
       render(this.#showMoreComponent, contentSection);
-      this.#showMoreComponent.setClickHandler(this.#handleShowMoreClick(dataset));
+      this.#showMoreComponent.setClickHandler(this.#handleShowMoreClick(dataset, rootComponent));
     }
   };
 
-  #handleShowMoreClick = (dataset) => () => {
+  #handleShowMoreClick = (dataset, rootComponent) => () => {
     this.#renderStartIndex =+ this.#renderFilmCount;
     this.#renderFilmCount = this.#renderFilmCount + this.#filmSliceCount;
-    this._renderFilmsSlice(this.#filmListContainer, dataset, this.referenceDataModel, this.#renderStartIndex,  this.#renderFilmCount);
+    this._renderFilmsSlice(this.#filmListContainer, dataset, this.referenceDataModel, this.#renderStartIndex,  this.#renderFilmCount, rootComponent);
 
     if (dataset.length <= this.#renderFilmCount) {
       this.#showMoreComponent.element.remove();
