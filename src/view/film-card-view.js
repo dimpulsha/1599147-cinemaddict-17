@@ -9,7 +9,7 @@ const createFilmControlTemplate = (filmItem) => {
   return (` <div class="film-card__controls">
       <button class="film-card__controls-item film-card__controls-item--add-to-watchlist ${setActiveClass(filmItem.userDetails.isWatchlist, activeClass)}" type="button">Add to watchlist</button>
       <button class="film-card__controls-item film-card__controls-item--mark-as-watched ${setActiveClass(filmItem.userDetails.isWatched, activeClass)}" type="button">Mark as watched</button>
-      <button class="film-card__controls-item film-card__controls-item--favorite ${setActiveClass(filmItem.userDetails.isFavorite, activeClass)}}" type="button">Mark as favorite</button>
+      <button class="film-card__controls-item film-card__controls-item--favorite ${setActiveClass(filmItem.userDetails.isFavorite, activeClass)}" type="button">Mark as favorite</button>
     </div>`);
 };
 
@@ -54,5 +54,35 @@ export default class FilmCardView extends AbstractView{
   #clickCardHandler = (evt) => {
     evt.preventDefault();
     this._callback.click();
+  };
+
+  setClickFavoriteHandler = (callback) => {
+    this._callback.favoriteClick = callback;
+    this.element.querySelector('.film-card__controls-item--favorite').addEventListener('click', this.#clickFavoriteHandler);
+  };
+
+  #clickFavoriteHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.favoriteClick();
+  };
+
+  setClickWatchListHandler = (callback) => {
+    this._callback.watchListClick = callback;
+    this.element.querySelector('.film-card__controls-item--add-to-watchlist').addEventListener('click', this.#clickWatchListHandler);
+  };
+
+  #clickWatchListHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.watchListClick();
+  };
+
+  setClickWatchedHandler = (callback) => {
+    this._callback.watchedClick = callback;
+    this.element.querySelector('.film-card__controls-item--mark-as-watched').addEventListener('click', this.#clickWatchedHandler);
+  };
+
+  #clickWatchedHandler = (evt) => {
+    evt.preventDefault();
+    this._callback.watchedClick();
   };
 }
