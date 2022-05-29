@@ -13,6 +13,15 @@ export default class MainSectionPresenter {
   #filmsListTopSection = new FilmsList('TOP');
   #filmsListCommentedSection = new FilmsList('COMMENTED');
 
+  #filterComponent = null;
+
+  #renderSort = () => {
+    render(this.#sortComponent, this.contentSection);
+  };
+
+  #renderFilter = () => {
+    render(this.#filterComponent, this.contentSection);
+  };
 
   init = (contentSection, dataModel, referenceDataModel, rootComponent) => {
     this.contentSection = contentSection;
@@ -20,10 +29,10 @@ export default class MainSectionPresenter {
     this.referenceDataModel = referenceDataModel;
     this.filmsList = this.dataModel.films;
     const filters = this.dataModel.generateFilter();
-    const filterComponent = new FilterView(filters);
+    this.#filterComponent = new FilterView(filters);
 
-    render(filterComponent, this.contentSection);
-    render(this.#sortComponent, this.contentSection);
+    this.#renderFilter();
+    this.#renderSort();
     render(this.#filmsSectionComponent, this.contentSection);
     this.#filmsListAllSection.init(this.#filmsSectionComponent.element, this.filmsList, referenceDataModel, rootComponent);
     this.#filmsListTopSection.init(this.#filmsSectionComponent.element, this.filmsList, referenceDataModel, rootComponent);
