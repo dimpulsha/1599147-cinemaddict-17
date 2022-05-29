@@ -1,4 +1,5 @@
 import { getRandomInteger, getRandomItem } from '../utils/utils';
+import {nanoid} from 'nanoid';
 
 const MIN_MOCK_FILMS = 1;
 const MAX_MOCK_FILMS = 23;
@@ -15,7 +16,7 @@ const filmPosters = [
 
 
 const getFilmMock = () => ({
-  'id': '0',
+  'id': nanoid(),
   //
   'comments': [ 1, 3, 5, 7, 9],
   'film_info': {

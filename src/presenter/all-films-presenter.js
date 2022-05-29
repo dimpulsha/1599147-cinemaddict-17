@@ -3,23 +3,28 @@ import { getFilmSectionConfig } from '../config';
 import FilmsList from './films-list-presenter';
 import ContainerView from '../view/container-view';
 import FilmListTitleView from '../view/film-list-title-view';
-import ShowMoreView from '../view/show-more-view';
+import ShowMorePresenter from './show-more-presenter.js';
 
 export default class AllFilmsList extends FilmsList{
-  #showMoreComponent = new ShowMoreView();
   #sectionConfig = getFilmSectionConfig()[this.listName];
   #filmSliceCount = this.#sectionConfig.LIST_SLICE;
   #renderFilmCount = this.#filmSliceCount;
   #renderStartIndex = 0;
   #filmListContainer = new ContainerView('filmListContainer');
+  #showMoreControl = null;
+  #filmList = null;
+
+  #renderShowMoreControl = (contentSection, dataset, rootComponent) => {
+    this.#showMoreControl = new ShowMorePresenter(contentSection, this.#handleShowMoreClick(dataset, rootComponent));
+    this.#showMoreControl.init();
+  };
 
   _renderFilmList = (contentSection, dataset, referenceDataModel, startIndex, stopIndex, rootComponent) => {
     render(this.#filmListContainer, contentSection);
     this._renderFilmsSlice(this.#filmListContainer, dataset, referenceDataModel, startIndex, stopIndex, rootComponent);
 
     if (dataset.length > this.#filmSliceCount) {
-      render(this.#showMoreComponent, contentSection);
-      this.#showMoreComponent.setClickHandler(this.#handleShowMoreClick(dataset, rootComponent));
+      this.#renderShowMoreControl(contentSection, dataset, rootComponent);
     }
   };
 
@@ -29,8 +34,7 @@ export default class AllFilmsList extends FilmsList{
     this._renderFilmsSlice(this.#filmListContainer, dataset, this.referenceDataModel, this.#renderStartIndex,  this.#renderFilmCount, rootComponent);
 
     if (dataset.length <= this.#renderFilmCount) {
-      this.#showMoreComponent.element.remove();
-      this.#showMoreComponent.removeElement();
+      this.#showMoreControl.destroy();
     }
   };
 
@@ -53,10 +57,17 @@ export default class AllFilmsList extends FilmsList{
     this._renderFilmList(contentSection.element, dataset, referenceModel, this.#renderStartIndex, this.#filmSliceCount, rootComponent);
   };
 
+  _clearCardList = () => {
+    this.filmCardsMap.forEach((filmCard) => filmCard.destroy());
+    this.filmCardsMap.clear();
+    this.#renderStartIndex = 0;
+    this.#showMoreControl.destroy();
+  };
 
   init = (contentSection, dataset, referenceModel, rootComponent) => {
+    this.#filmList = dataset;
     const filmListSectionComponent = new ContainerView(this.#sectionConfig.sectionName);
     render(filmListSectionComponent, contentSection);
-    this.#renderFilmContainerContent(filmListSectionComponent, dataset, referenceModel, rootComponent);
+    this.#renderFilmContainerContent(filmListSectionComponent, this.#filmList, referenceModel, rootComponent);
   };
 }
