@@ -1,5 +1,9 @@
 import { getRandomInteger, getRandomItem } from '../utils/utils';
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
+import dayjs from 'dayjs';
+import dayjsRandom from 'dayjs-random';
+
+dayjs.extend(dayjsRandom);
 
 const MIN_MOCK_FILMS = 1;
 const MAX_MOCK_FILMS = 23;
@@ -24,7 +28,7 @@ const getFilmMock = () => ({
     'title': 'A Little Pony Without The Carpet',
     'alternative_title': 'Laziness Who Sold Themselves',
     //
-    'total_rating': 5.3,
+    'total_rating': getRandomInteger(0, 20),
     //
     'poster': `images/posters/${getRandomItem(filmPosters)}`,
     'age_rating': getRandomInteger(0, 18),
@@ -37,7 +41,7 @@ const getFilmMock = () => ({
     ],
     'release': {
       //
-      'date': '2019-05-11T00:00:00.000Z',
+      'date': dayjs.between('1820-06-10T11:00:00+01:00', '2020-06-10T19:00:00+01:00').format(),
       'release_country': 'Finland'
     },
     //

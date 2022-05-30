@@ -1,16 +1,18 @@
 import { render } from '../framework/render.js';
-import { getFilmSectionConfig } from '../config';
+import { getFilmSectionConfig, getSortType} from '../config';
 import { updateItem } from '../utils/appService';
 import ContainerView from '../view/container-view';
 import FilmListTitleView from '../view/film-list-title-view';
 import FilmCardPresenter from './film-card-presenter.js';
 
 export default class FilmsList {
-
+  #sortTypes = getSortType();
   filmCardsMap = new Map();
   #filmList = null;
-  #commonfilmList = null;
+  #commonFilmList = null;
   #commonReferenceModel = null;
+
+  #commonSourceFilmList = null;
 
   constructor(listName) {
     this.listName = listName;
@@ -22,7 +24,8 @@ export default class FilmsList {
   };
 
   _handleTaskChange = (updatedCard) => {
-    this.#commonfilmList = updateItem(this.#commonfilmList, updatedCard);
+    this.#commonFilmList = updateItem(this.#commonFilmList, updatedCard);
+    this.#commonSourceFilmList =  updateItem(this.#commonSourceFilmList, updatedCard);
     this.filmCardsMap.get(updatedCard.id).init(updatedCard, this.#commonReferenceModel);
   };
 
@@ -33,9 +36,9 @@ export default class FilmsList {
   };
 
   _renderFilmsSlice = (contentSection, films, referenceDataModel, startIndex, stopIndex, rootComponent) => {
-    this.#commonfilmList = films;
+    this.#commonFilmList = films;
     this.#commonReferenceModel = referenceDataModel;
-    this.#commonfilmList.slice(startIndex, stopIndex).forEach((filmItem) => this._renderFilm(contentSection, filmItem, this.#commonReferenceModel, rootComponent));
+    this.#commonFilmList.slice(startIndex, stopIndex).forEach((filmItem) => this._renderFilm(contentSection, filmItem, this.#commonReferenceModel, rootComponent));
   };
 
   _renderFilmList = (contentSection, films, referenceDataModel, startIndex, stopIndex, rootComponent) => {

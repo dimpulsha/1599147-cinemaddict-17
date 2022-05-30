@@ -24,6 +24,24 @@ const deepArrayCopy = (array) => array.map((item) => ({ ...item }));
 
 const setActiveClass = (isActive, activeObject) => isActive ? activeObject : '';
 
-export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText, setActiveClass, humanizeDateTime, deepArrayCopy, isEscKey };
+const getWeightForNum = (numA, numB) => numB - numA;
+
+const getWeightForNullDate = (dateA, dateB) => {
+  if (dateA === null && dateB === null) {
+    return 0;
+  }
+
+  if (dateA === null) {
+    return 1;
+  }
+
+  if (dateB === null) {
+    return -1;
+  }
+
+  return null;
+};
+
+export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText, setActiveClass, humanizeDateTime, deepArrayCopy, isEscKey, getWeightForNum, getWeightForNullDate };
 
 
