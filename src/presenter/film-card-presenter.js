@@ -83,7 +83,7 @@ export default class FilmCardPresenter  {
     this.#popupRemove();
   };
 
-   #handleFilmCardClick = () => {
+  #handleFilmCardClick = () => {
     this.#showPopup();
     this.#rootPage.setEscKeyDownHandler(this.#handleEscKeyDown);
   };
