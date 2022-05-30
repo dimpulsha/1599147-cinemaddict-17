@@ -38,7 +38,7 @@ export default class AllFilmsList {
         this.#filmList.sort(sortDateUp);
         break;
       default:
-        this.#filmList = this.#sourceFilmList;
+        this.#filmList = this.#sourceFilmList.slice();
     }
 
     this.clearCardList();
