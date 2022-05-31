@@ -14,7 +14,6 @@ export default class PagePresenter {
   }
 
   #userProfile = new UserProfilePresenter();
-  // заменить на statisticView
   #statisticFilms = new StatisticPresenter(this.dataModel);
   #mainContentSection = new MainSectionPresenter();
 

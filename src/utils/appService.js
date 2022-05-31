@@ -1,4 +1,6 @@
 import { getFilterType } from '../config';
+import { getWeightForNum, getWeightForNullDate } from './utils';
+import dayjs from 'dayjs';
 const filterTypes = getFilterType();
 
 const setRating = (num) => {
@@ -35,8 +37,14 @@ const updateItem = (items, update) => {
   ];
 };
 
+const getFilmRatingWeight = (filmA, filmB) => getWeightForNum(filmA.filmInfo.totalRating, filmB.filmInfo.totalRating);
+
+const sortDateUp = (filmA, filmB) => {
+  const weight = getWeightForNullDate(filmA.filmInfo.release.releaseDate, filmB.filmInfo.release.releaseDate);
+  return weight ?? dayjs(filmA.filmInfo.release.releaseDate).diff(dayjs(filmB.filmInfo.release.releaseDate));
+};
 
 const getFilterFunc = () => filterFunc;
 
-export { setRating, getFilterFunc, updateItem };
+export { setRating, getFilterFunc, updateItem, getFilmRatingWeight, sortDateUp };
 

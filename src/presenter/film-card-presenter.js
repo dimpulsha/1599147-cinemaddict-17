@@ -27,7 +27,7 @@ export default class FilmCardPresenter  {
     this.#filmCardComponent = new FilmCardView(this.#filmItem);
     this.#filmPopup = new FilmPopupPresenter(this.#rootPage, this.#changeData);
 
-    this.#filmCardComponent.setClickCardHandler(this.#onFilmCardClick);
+    this.#filmCardComponent.setClickCardHandler(this. #handleFilmCardClick);
     this.#filmCardComponent.setClickFavoriteHandler(this.#handleFavoriteClick);
     this.#filmCardComponent.setClickWatchListHandler(this.#handleWatchListClick);
     this.#filmCardComponent.setClickWatchedHandler(this.#handleWatchedClick);
@@ -83,7 +83,7 @@ export default class FilmCardPresenter  {
     this.#popupRemove();
   };
 
-  #onFilmCardClick = () => {
+  #handleFilmCardClick = () => {
     this.#showPopup();
     this.#rootPage.setEscKeyDownHandler(this.#handleEscKeyDown);
   };

@@ -43,11 +43,17 @@ const filmSectionConfig = {
   }
 };
 
-const filterType = {
+const filterTypes = {
   // ALL: 'all',
   WATCHLIST: 'watchlist',
   HISTORY: 'history',
   FAVORITES: 'favorites'
+};
+
+const sortTypes = {
+  DEFAULT: 'default',
+  DATE: 'date',
+  RATING: 'rating',
 };
 
 const getDescriptionLimit = () => MAX_TEXT_LENGTH;
@@ -55,6 +61,7 @@ const getReplacedText = () => TOO_MACH_TEXT;
 const getEmotionsList = () => emotions;
 const getRatingNames = () => ratingNames;
 const getFilmSectionConfig = () => filmSectionConfig;
-const getFilterType = () => filterType;
+const getFilterType = () => filterTypes;
+const getSortType = () => sortTypes;
 
-export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig, getFilterType };
+export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig, getFilterType, getSortType };
