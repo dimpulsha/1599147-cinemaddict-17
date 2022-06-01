@@ -1,4 +1,5 @@
-import {render, remove} from '../framework/render.js';
+import { render, remove } from '../framework/render.js';
+// import { getCommentsDataTemplate } from '../config';
 import PopupView from '../view/popup/popup-view';
 import FilmDetailsView from '../view/popup/film-details-view';
 import FilmDetailsControlPresenter from './film-details-control-presenter.js';
@@ -10,7 +11,7 @@ export default class FilmPopupPresenter {
   #popupContainer = null;
   #popupComponent = null;
   #filmComments = null;
-  #filmNewComments = null;
+  #filmNewComment = null;
   #filmDetailsControl = null;
   #filmItem = null;
   #changeGlobalData = null;
@@ -21,10 +22,9 @@ export default class FilmPopupPresenter {
   }
 
   init = (dataItem, commentsList) => {
-
     this.#popupComponent = new PopupView();
     this.#filmComments = new PopupFilmCommentsPresenter();
-    this.#filmNewComments = new PopupNewCommentsPresenter();
+    this.#filmNewComment = new PopupNewCommentsPresenter();
 
     this.#filmItem = dataItem;
     this.commentsList = commentsList;
@@ -36,7 +36,7 @@ export default class FilmPopupPresenter {
 
     this.#filmDetailsControl.init(this.#filmItem);
     this.#filmComments.init(this.commentsList, this.#popupComponent.commentsElement);
-    this.#filmNewComments.init(this.#popupComponent.commentsElement);
+    this.#filmNewComment.init(this.#popupComponent.commentsElement);
   };
 
   destroy = () => {

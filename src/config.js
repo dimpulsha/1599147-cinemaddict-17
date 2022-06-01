@@ -56,6 +56,11 @@ const sortTypes = {
   RATING: 'rating',
 };
 
+const commentsDataTemplate = {
+  'comment': '',
+  'emotion': ''
+};
+
 const getDescriptionLimit = () => MAX_TEXT_LENGTH;
 const getReplacedText = () => TOO_MACH_TEXT;
 const getEmotionsList = () => emotions;
@@ -63,5 +68,6 @@ const getRatingNames = () => ratingNames;
 const getFilmSectionConfig = () => filmSectionConfig;
 const getFilterType = () => filterTypes;
 const getSortType = () => sortTypes;
+const getCommentsDataTemplate = () => commentsDataTemplate;
 
-export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig, getFilterType, getSortType };
+export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig, getFilterType, getSortType, getCommentsDataTemplate };

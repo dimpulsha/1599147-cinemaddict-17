@@ -1,10 +1,16 @@
-import {render} from '../framework/render.js';
+import { render } from '../framework/render.js';
+import { getCommentsDataTemplate } from '../config';
 import FilmNewCommentsView from '../view/popup/film-new-comments-view';
-// нужен ли этот презентер?
+
 export default class PopupNewCommentsPresenter {
 
+  #filmNewCommentsComponent = null;
+  #newComment = null;
+
   init = (contentSection) => {
+    this.#newComment = getCommentsDataTemplate();
     this.contentSection = contentSection;
-    render(new FilmNewCommentsView(), this.contentSection);
+    this.#filmNewCommentsComponent = new FilmNewCommentsView(this.#newComment);
+    render( this.#filmNewCommentsComponent, this.contentSection);
   };
 }
