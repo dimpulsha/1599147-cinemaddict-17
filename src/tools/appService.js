@@ -47,4 +47,3 @@ const sortDateUp = (filmA, filmB) => {
 const getFilterFunc = () => filterFunc;
 
 export { setRating, getFilterFunc, updateItem, getFilmRatingWeight, sortDateUp };
-
