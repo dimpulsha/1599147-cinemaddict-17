@@ -43,5 +43,3 @@ const getWeightForNullDate = (dateA, dateB) => {
 };
 
 export { getRandomInteger, getRandomItem, getHours, getYear, humanizeDate, getShortText, setActiveClass, humanizeDateTime, deepArrayCopy, isEscKey, getWeightForNum, getWeightForNullDate };
-
-
