@@ -1,17 +1,6 @@
 const MAX_TEXT_LENGTH = 139;
 const TOO_MACH_TEXT = '...';
-// todo SLICE - удалить
-// const FILM_LIST_SLICE = 5;
-// const TOP_FILM_SLICE = 2;
-// const COMMENTED_FILM_SLICE = 2;
 const emotions = ['smile', 'sleeping', 'puke', 'angry'];
-// const pageEntryPoints = {
-//   bodyElement: document.querySelector('body'),
-//   siteHeaderElement: document.querySelector('.header'),
-//   siteMainElement: document.querySelector('.main'),
-//   statisticElement: document.querySelector('.footer__statistics'),
-//   openPopupElement: document.querySelector('.film-details')
-// };
 const ratingNames = new Map(Object.entries({
   0: '',
   1: 'Novice',
@@ -54,15 +43,31 @@ const filmSectionConfig = {
   }
 };
 
+const filterTypes = {
+  // ALL: 'all',
+  WATCHLIST: 'watchlist',
+  HISTORY: 'history',
+  FAVORITES: 'favorites'
+};
+
+const sortTypes = {
+  DEFAULT: 'default',
+  DATE: 'date',
+  RATING: 'rating',
+};
+
+const commentsDataTemplate = {
+  'comment': '',
+  'emotion': ''
+};
+
 const getDescriptionLimit = () => MAX_TEXT_LENGTH;
 const getReplacedText = () => TOO_MACH_TEXT;
-// const getFilmSlice = () => FILM_LIST_SLICE;
-// const getTopFilmSlice = () => TOP_FILM_SLICE;
-// const getCommentedFilmSlice = () => COMMENTED_FILM_SLICE;
 const getEmotionsList = () => emotions;
-// const getPageEntryPoints = () => pageEntryPoints;
 const getRatingNames = () => ratingNames;
 const getFilmSectionConfig = () => filmSectionConfig;
+const getFilterType = () => filterTypes;
+const getSortType = () => sortTypes;
+const getCommentsDataTemplate = () => commentsDataTemplate;
 
-// getFilmSlice, getTopFilmSlice, getCommentedFilmSlice, getPageEntryPoints,
-export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig };
+export { getDescriptionLimit, getReplacedText, getEmotionsList, getRatingNames, getFilmSectionConfig, getFilterType, getSortType, getCommentsDataTemplate };
