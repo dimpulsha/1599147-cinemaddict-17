@@ -1,0 +1,21 @@
+{
+  "exclude": [
+    "build",
+    "src/framework"
+  ],
+
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "target": "esnext"
+  },
+
+  "typeAcquisition": {
+    "enable": true
+  }
+}
