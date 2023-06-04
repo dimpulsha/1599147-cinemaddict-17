@@ -49,7 +49,7 @@ const filmDetailsView = document.querySelector('film-details-view');
 /**
  * @type {FooterStatisticView}
  */
-const footerStatisticView = document.querySelector('footer-statistic-view');
+const footerStatisticView = footer.querySelector('footer-statistic-view');
 
 userView.render();
 mainNavigationView.render();
