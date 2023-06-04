@@ -63,13 +63,8 @@
  */
 
 /**
- * @typedef ReleaseInfo
- * @prop {string} releaseDate
- * @prop {string} releaseCountry
- */
-
-/**
- * @typedef FilmInfo
+ * @typedef FilmItem
+ * @prop {number} id
  * @prop {string} title
  * @prop {string} alternativeTitle
  * @prop {number} totalRating
@@ -78,25 +73,15 @@
  * @prop {string} director
  * @prop {Array<string>} writers
  * @prop {Array<string>} actors
- * @prop {RAWReleaseInfo} release
+ * @prop {string} releaseDate
+ * @prop {string} releaseCountry
  * @prop {number} runtime
  * @prop {Array<string>} genre
  * @prop {string} description
- */
-
-/**
- * @typedef UserDetails
  * @prop {boolean} isWatchlist
  * @prop {boolean} isAlreadyWatched
  * @prop {string} watchingDate
  * @prop {boolean} isFavorite
- */
-
-/**
- * @typedef FilmItem
- * @prop {number} id
- * @prop {RawFilmInfo} filmInfo
- * @prop {RawUserDetails} userDetails
  * @prop {Array<number>} commentsIds
  * @prop {number} commentsCount
  */
