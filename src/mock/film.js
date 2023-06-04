@@ -1,4 +1,4 @@
-import { getRandomInteger, getRandomItem } from '../tools/utils';
+import { getRandomInteger, getRandomItem } from '../tools/_utils';
 import { nanoid } from 'nanoid';
 import dayjs from 'dayjs';
 import dayjsRandom from 'dayjs-random';

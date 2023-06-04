@@ -16,18 +16,33 @@
 
   <header class="header">
     <h1 class="header__logo logo">Cinemaddict</h1>
+    <user-view class="header__profile "> </user-view>
+
   </header>
 
   <main class="main">
+    <main-navigation-view></main-navigation-view>
+
+    <sort-view></sort-view>
+
+    <section class="films">
+      <film-list-view> </film-list-view>
+
+      <top-rated-view> </top-rated-view>
+
+      <top-comment-view> </top-comment-view>
+
+    </section>
   </main>
 
 
   <footer class="footer">
     <section class="footer__logo logo logo--smaller">Cinemaddict</section>
-    <section class="footer__statistics">
-    </section>
+    <footer-statistic-view class="footer__statistics">
+    </footer-statistic-view>
   </footer>
-  <script src="./bundle.js"></script>
+
+  <film-details-view class="visually-hidden"> </film-details-view>
 </body>
 
 </html>
