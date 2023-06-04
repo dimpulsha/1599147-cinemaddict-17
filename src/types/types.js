@@ -83,7 +83,6 @@
  * @prop {string} watchingDate
  * @prop {boolean} isFavorite
  * @prop {Array<number>} commentsIds
- * @prop {number} commentsCount
  */
 
 /**
