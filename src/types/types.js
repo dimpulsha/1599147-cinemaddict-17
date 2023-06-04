@@ -1,4 +1,8 @@
 /**
+ * @typedef {import('../views/view.js').default} View
+ */
+
+/**
  * @typedef {import('../tools/utils.js').SafeHtml} SafeHtml
  * @typedef {import('../views/user-view.js').default} UserView
  * @typedef {import('../views/main-navigation-view.js').default} MainNavigationView
@@ -10,4 +14,8 @@
  * @typedef {import('../views/top-comment-view.js').default} TopCommentView
  * @typedef {import('../views/film-details-view.js').default} FilmDetailsView
  * @typedef {import('../views/footer-statistic-view.js').default} FooterStatisticView
+ */
+
+/**
+ * @typedef {import('../model/model.js').default} Model
  */
