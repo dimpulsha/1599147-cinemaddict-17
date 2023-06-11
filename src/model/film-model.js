@@ -9,14 +9,14 @@ export class CommentsModel extends Model {
   constructor() {
 
     super();
-    this.rawFilmList = rawFilmList;
+    this.#rawFilmList = rawFilmList;
   }
 
   /**
    * @param {RawFilmItem} item
    * @return {FilmItem}
    */
-  transformItemToInternal(item) {
+  static transformFilmToInternal(item) {
     return {
       id: item.id,
       title: item.film_info.title,
@@ -39,4 +39,12 @@ export class CommentsModel extends Model {
       commentsIds: item.comments
     };
   }
+
+  /**
+   * @return {FilmList}
+   */
+  getFilmList() {
+    return structuredClone(this.#rawFilmList);
+  }
+
 }
