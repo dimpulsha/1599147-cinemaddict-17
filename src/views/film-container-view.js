@@ -13,9 +13,8 @@ class FilmContainerView extends View {
   /**
    * @override
    */
-
   render() {
-    const views = new Array(4).fill().map(this.createFilmListItem);
+    const views = new Array(4).fill().map(this.createFilmCard);
     this.replaceChildren(...views);
   }
 
@@ -32,7 +31,7 @@ class FilmContainerView extends View {
    * @param {*} state
    * @return {FilmCardView}
    */
-  createFilmListItem(state) {
+  createFilmCard(state) {
     const view = new FilmCardView;
     view.state = state;
     view.render();

@@ -8,7 +8,7 @@ export default class CommentsModel extends Model {
 
   constructor() {
     super();
-    this.commentsList = rawCommentsList;
+    this.#commentsList = rawCommentsList;
   }
 
 }

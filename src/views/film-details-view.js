@@ -6,6 +6,8 @@ class FilmDetailsView extends View {
     super();
 
     this.classList.add('film-details');
+    this.setAttribute('hidden', 'true');
+
   }
 
   /**

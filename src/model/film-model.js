@@ -2,7 +2,7 @@
 import Model from './model';
 import rawFilmList from '../mock/films.json';
 
-export class CommentsModel extends Model {
+export default class FilmModel extends Model {
 
   #rawFilmList;
 
@@ -44,7 +44,10 @@ export class CommentsModel extends Model {
    * @return {FilmList}
    */
   getFilmList() {
-    return structuredClone(this.#rawFilmList);
+    //todo клонирование убрать можно?
+    const rawFilmData = structuredClone(this.#rawFilmList);
+    const transformedFilmData = rawFilmData.map((item) => FilmModel.transformFilmToInternal(item));
+    return transformedFilmData;
   }
 
 }

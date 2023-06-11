@@ -26,11 +26,21 @@
     <sort-view></sort-view>
 
     <section class="films">
-      <film-list-view> </film-list-view>
+       <section class="films-list">
+        <film-list-tittle-view> </film-list-tittle-view>
+        <film-container-view></film-container-view>
+        <show-more-view></show-more-view>
+       </section>
 
-      <top-rated-view> </top-rated-view>
+      <section class="films-list films-list--extra">
+        <h2 class="films-list__title">Top rated</h2>
+        <rate-container-view></rate-container-view>
+      </section>
 
-      <top-comment-view> </top-comment-view>
+      <section class="films-list films-list--extra">
+        <h2 class="films-list__title">Most commented</h2>
+        <comment-container-view></comment-container-view>
+        </section>
 
     </section>
   </main>
@@ -42,7 +52,8 @@
     </footer-statistic-view>
   </footer>
 
-  <film-details-view class="visually-hidden"> </film-details-view>
+
+  <film-details-view> </film-details-view>
 </body>
 
 </html>
