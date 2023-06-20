@@ -15,7 +15,7 @@ import FooterStatisticPresenter from './presenters/footer-statistic-presenter.js
 import MainNavigationPresenter from './presenters/main-navigation-presenter.js';
 import SortPresenter from './presenters/sort-presenter.js';
 import UserPresenter from './presenters/user-presenter.js';
-// import FilmModel from './model/film-model.js';
+import FilmModel from './model/film-model.js';
 import FilmListTitlePresenter from './presenters/film-list-title-presenter.js';
 import ShowMorePresenter from './presenters/show-more-presenter.js';
 import RateContainerPresenter from './presenters/rate-container-presenter.js';
@@ -26,16 +26,17 @@ const header = document.querySelector('.header');
 const main = document.querySelector('.main');
 const footer = document.querySelector('.footer');
 
-// const filmModel = new FilmModel();
+const filmModel = new FilmModel();
 
 new UserPresenter(header.querySelector('user-view'));
 new MainNavigationPresenter(main.querySelector('main-navigation-view'));
 new SortPresenter(main.querySelector('sort-view'));
 new FilmListTitlePresenter(main.querySelector('film-list-tittle-view'));
-new FilmContainerPresenter(main.querySelector('film-container-view'));
+new FilmContainerPresenter(main.querySelector('film-container-view'), filmModel);
 new ShowMorePresenter(main.querySelector('show-more-view'));
-new RateContainerPresenter(main.querySelector('rate-container-view'));
-new CommentContainerPresenter(main.querySelector('comment-container-view'));
+new RateContainerPresenter(main.querySelector('rate-container-view'), filmModel);
+new CommentContainerPresenter(main.querySelector('comment-container-view'), filmModel);
 new FilmDetailsPresenter(document.querySelector('film-details-view'));
 new FooterStatisticPresenter(footer.querySelector('footer-statistic-view'));
 // (как на разные элементы навесить одинаковые презентеры? или никак?)
+// как попап рисовать? можно через строку состояния, можно  через  событие?

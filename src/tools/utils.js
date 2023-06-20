@@ -52,6 +52,19 @@ const getRandomItem = (array) => array[getRandomInteger(0, array.length - 1)];
 
 /**
  *
+ * @param {string} text
+ * @param {number} length
+ * @param {string} releasedText
+ * @returns
+ */
+const getShortText = (text, length, releasedText) => {
+  if (text.length > length) {
+    text = `${text.slice(0, length)}${releasedText}`;
+  }
+  return text;
+};
+
+/**
  * @param {string} dateTime
  * @return {string}
  */
@@ -96,4 +109,4 @@ const getDuration = (startDateTime, endDateTime) => dayjs(endDateTime).diff(star
  * @param {HTMLInputElement} element
  */
 
-export {SafeHtml, html, getRandomInteger, getRandomItem, formatDate, formatTime, getDuration };
+export {SafeHtml, html, getRandomInteger, getRandomItem, formatDate, formatTime, getDuration, getShortText };

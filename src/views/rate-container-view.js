@@ -1,5 +1,6 @@
 // import { html } from '../tools/safe-html.js';
 import FilmContainerView from './film-container-view';
+import FilmCardView from './film-card-view.js';
 
 class RateContainerView extends FilmContainerView {
   constructor() {
@@ -8,22 +9,25 @@ class RateContainerView extends FilmContainerView {
     // this.classList.add('rate-container-view');
   }
 
-  // /**
-  //  * @override
-  //  */
-  // createHtml() {
-  //   return html`
-
-  //   `;
-  // }
-
-
   /**
    * @override
    */
   render() {
-    const views = new Array(4).fill().map(this.createFilmCard);
+    const filmList = this.state.items;
+    const views = filmList.map(this.createFilmCard);
     this.replaceChildren(...views);
+  }
+
+  /**
+   * @param {FilmState} state
+   * @return {FilmCardView}
+   */
+  createFilmCard(state) {
+    const view = new FilmCardView();
+    view.state = state;
+    view.render();
+
+    return view;
   }
 
 }

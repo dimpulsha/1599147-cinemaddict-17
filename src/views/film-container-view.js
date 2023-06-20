@@ -1,8 +1,10 @@
 import View from './view.js';
-import { html } from '../tools/safe-html.js';
+// import { html } from '../tools/safe-html.js';
 import FilmCardView from './film-card-view.js';
 
-
+/**
+ * @extends {View<FilmListState>}
+ */
 class FilmContainerView extends View {
   constructor() {
     super();
@@ -14,25 +16,26 @@ class FilmContainerView extends View {
    * @override
    */
   render() {
-    const views = new Array(4).fill().map(this.createFilmCard);
+    const filmList = this.state.items;
+    const views = filmList.map(this.createFilmCard);
     this.replaceChildren(...views);
   }
 
-  /**
-   * @override
-   */
-  createHtml() {
-    return html`
+  // /**
+  //  * @override
+  //  */
+  // createHtml() {
+  //   return html`
 
-    `;
-  }
+  //   `;
+  // }
 
   /**
-   * @param {*} state
+   * @param {FilmState} state
    * @return {FilmCardView}
    */
   createFilmCard(state) {
-    const view = new FilmCardView;
+    const view = new FilmCardView();
     view.state = state;
     view.render();
 
